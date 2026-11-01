@@ -1,0 +1,30 @@
+flowchart TB
+  U["User"]
+  N["Network interface"]
+  P1(("1.0<br/>Capture /<br/>read packets"))
+  P2(("2.0<br/>Decode protocol<br/>headers"))
+  P3(("3.0<br/>Compute traffic<br/>statistics"))
+  P4(("4.0<br/>Detect suspicious<br/>patterns"))
+  P5(("5.0<br/>Generate<br/>reports"))
+  D1[("D1 · Capture file (.pcap)")]
+  D2[("D2 · Decoded packet list")]
+  D3[("D3 · Output folder<br/>CSV · JSON · PNG · HTML")]
+  N -- "raw frames" --> P1
+  U -- "file path / interface" --> P1
+  P1 -- "write" --> D1
+  D1 -- "raw packets" --> P1
+  P1 -- "RawPacket (time, bytes)" --> P2
+  P2 -- "Packet records" --> D2
+  D2 --> P3
+  D2 --> P4
+  U -- "thresholds" --> P4
+  P3 -- "summaries" --> P5
+  P4 -- "alerts" --> P5
+  P5 -- "files" --> D3
+  P5 -- "console + dashboard" --> U
+  classDef ext fill:#ffffff,stroke:#52514e,color:#0b0b0b
+  classDef proc fill:#e8f1fc,stroke:#2a78d6,stroke-width:2px,color:#0b0b0b
+  classDef store fill:#fdeee7,stroke:#eb6834,color:#0b0b0b
+  class U,N ext
+  class P1,P2,P3,P4,P5 proc
+  class D1,D2,D3 store

@@ -1,0 +1,293 @@
+{
+  "tool": "Network Traffic Analyzer 1.0.0",
+  "source": "lab_traffic.pcap",
+  "capture_start": "2026-10-20 10:30:00",
+  "summary": {
+    "packets": 4676,
+    "bytes": 3443711,
+    "duration_s": 115.568,
+    "avg_packet_size": 736.5,
+    "packets_per_sec": 40.46,
+    "bits_per_sec": 238384.6,
+    "unique_hosts": 472,
+    "conversations": 732,
+    "protocols": {
+      "TCP": 2156,
+      "TLS": 1903,
+      "ICMP": 368,
+      "DNS": 102,
+      "HTTP": 100,
+      "ARP": 31,
+      "NTP": 8,
+      "DHCP": 4,
+      "mDNS": 4
+    },
+    "network_layer": {
+      "IPv4": 4641,
+      "ARP": 31,
+      "IPv6": 4
+    },
+    "transport_layer": {
+      "TCP": 4159,
+      "ICMP": 368,
+      "UDP": 118
+    },
+    "tcp_flags": {
+      "ACK": 3480,
+      "SYN": 854,
+      "RST": 200,
+      "PSH": 90,
+      "FIN": 50
+    },
+    "top_dst_ports": [
+      [
+        80,
+        456
+      ],
+      [
+        53,
+        52
+      ],
+      [
+        443,
+        20
+      ],
+      [
+        123,
+        9
+      ],
+      [
+        5353,
+        4
+      ],
+      [
+        67,
+        3
+      ],
+      [
+        68,
+        3
+      ],
+      [
+        176,
+        1
+      ],
+      [
+        124,
+        1
+      ],
+      [
+        97,
+        1
+      ]
+    ],
+    "dns_queries": 40,
+    "http_requests": 5,
+    "tls_servers": 9,
+    "malformed": 0
+  },
+  "top_talkers": [
+    {
+      "host": "192.168.1.12",
+      "sent": 47086,
+      "received": 1558424,
+      "packets": 766
+    },
+    {
+      "host": "192.0.2.80",
+      "sent": 1246306,
+      "received": 25416,
+      "packets": 833
+    },
+    {
+      "host": "192.168.1.10",
+      "sent": 20589,
+      "received": 669825,
+      "packets": 310
+    },
+    {
+      "host": "203.0.113.10",
+      "sent": 468418,
+      "received": 11704,
+      "packets": 329
+    },
+    {
+      "host": "192.168.1.11",
+      "sent": 12262,
+      "received": 460355,
+      "packets": 190
+    },
+    {
+      "host": "192.168.1.20",
+      "sent": 202971,
+      "received": 215176,
+      "packets": 338
+    },
+    {
+      "host": "192.168.1.66",
+      "sent": 199800,
+      "received": 199560,
+      "packets": 384
+    },
+    {
+      "host": "203.0.113.70",
+      "sent": 280944,
+      "received": 6610,
+      "packets": 194
+    },
+    {
+      "host": "192.168.1.15",
+      "sent": 9726,
+      "received": 252952,
+      "packets": 126
+    },
+    {
+      "host": "198.51.100.30",
+      "sent": 192971,
+      "received": 4888,
+      "packets": 135
+    }
+  ],
+  "tls_sni": {
+    "www.google.com": 4,
+    "github.com": 3,
+    "fonts.gstatic.com": 2,
+    "www.youtube.com": 2,
+    "docs.python.org": 2,
+    "karnavatiuniversity.edu.in": 2,
+    "en.wikipedia.org": 2,
+    "stackoverflow.com": 2,
+    "mirror.lab.example": 1
+  },
+  "http_requests": [
+    {
+      "client": "192.168.1.10",
+      "method": "GET",
+      "host": "192.168.1.20",
+      "uri": "/index.html"
+    },
+    {
+      "client": "192.168.1.10",
+      "method": "GET",
+      "host": "neverssl.com",
+      "uri": "/"
+    },
+    {
+      "client": "192.168.1.10",
+      "method": "GET",
+      "host": "192.168.1.1",
+      "uri": "/admin"
+    },
+    {
+      "client": "192.168.1.10",
+      "method": "GET",
+      "host": "httpforever.com",
+      "uri": "/"
+    },
+    {
+      "client": "192.168.1.10",
+      "method": "GET",
+      "host": "httpforever.com",
+      "uri": "/missing-page"
+    }
+  ],
+  "alerts": [
+    {
+      "rule": "SYN flood (DoS)",
+      "severity": "CRITICAL",
+      "source": "450 sources",
+      "target": "192.168.1.20:80",
+      "first_seen": 1792472475.0,
+      "last_seen": 1792472477.4695,
+      "count": 450,
+      "description": "450 SYN packets hit 192.168.1.20:80 within 2.5 s from 450 different source addresses; only 0.2% of handshakes were completed (half-open connections).",
+      "evidence": {
+        "syn_count": 450,
+        "unique_sources": 450,
+        "completion_ratio": 0.002
+      }
+    },
+    {
+      "rule": "TCP port scan",
+      "severity": "HIGH",
+      "source": "192.168.1.66",
+      "target": "192.168.1.12",
+      "first_seen": 1792472440.0,
+      "last_seen": 1792472443.683407,
+      "count": 200,
+      "description": "192.168.1.66 probed 200 different TCP ports on 192.168.1.12 in 3.7 s (SYN scan). Open ports revealed: 22, 80, 135, 139.",
+      "evidence": {
+        "ports_probed": 200,
+        "port_range": [
+          1,
+          200
+        ],
+        "open_ports": [
+          22,
+          80,
+          135,
+          139
+        ]
+      }
+    },
+    {
+      "rule": "ARP spoofing",
+      "severity": "HIGH",
+      "source": "de:ad:be:ef:00:66",
+      "target": "192.168.1.1",
+      "first_seen": 1792472460.0,
+      "last_seen": 1792472469.9,
+      "count": 12,
+      "description": "IP 192.168.1.1 was previously at 00:1a:2b:3c:4d:01 but 12 ARP replies now claim it is at de:ad:be:ef:00:66 - possible man-in-the-middle (ARP cache poisoning).",
+      "evidence": {
+        "original_mac": "00:1a:2b:3c:4d:01",
+        "spoofed_mac": "de:ad:be:ef:00:66",
+        "replies": 12
+      }
+    },
+    {
+      "rule": "ICMP flood",
+      "severity": "MEDIUM",
+      "source": "192.168.1.66",
+      "target": "192.168.1.20",
+      "first_seen": 1792472490.0,
+      "last_seen": 1792472491.611,
+      "count": 180,
+      "description": "180 ICMP echo requests sent to 192.168.1.20 in 1.6 s (~112 per second), mainly from 192.168.1.66.",
+      "evidence": {
+        "echo_requests": 180,
+        "rate_per_sec": 111.7
+      }
+    },
+    {
+      "rule": "DNS tunnelling suspected",
+      "severity": "MEDIUM",
+      "source": "192.168.1.15",
+      "target": "exfil-lab.example",
+      "first_seen": 1792472500.0,
+      "last_seen": 1792472508.584165,
+      "count": 28,
+      "description": "192.168.1.15 sent 28 DNS queries with long, random-looking names under 'exfil-lab.example' (28 unique, average 65 characters). Data may be hidden inside DNS lookups.",
+      "evidence": {
+        "queries": 28,
+        "unique_names": 28,
+        "avg_length": 65.3,
+        "example": "lkqp4ca5yqvxaodjkgu54lja7eszuhjt72aotxazqjiuv2.00.exfil-lab.example"
+      }
+    },
+    {
+      "rule": "Clear-text credentials",
+      "severity": "LOW",
+      "source": "192.168.1.10",
+      "target": "192.168.1.1",
+      "first_seen": 1792472458.001493,
+      "last_seen": 1792472458.001493,
+      "count": 1,
+      "description": "HTTP Basic auth from 192.168.1.10 to 192.168.1.1 sends the username and password without encryption - anyone on the path can read them. Use HTTPS/SSH/SFTP instead. (Credentials are not stored by this tool.)",
+      "evidence": {
+        "type": "HTTP Basic auth",
+        "occurrences": 1
+      }
+    }
+  ]
+}

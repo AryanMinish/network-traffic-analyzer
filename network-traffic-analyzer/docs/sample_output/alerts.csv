@@ -1,0 +1,7 @@
+severity,rule,source,target,first_seen,last_seen,count,description
+CRITICAL,SYN flood (DoS),450 sources,192.168.1.20:80,2026-10-20 10:31:15,2026-10-20 10:31:17,450,450 SYN packets hit 192.168.1.20:80 within 2.5 s from 450 different source addresses; only 0.2% of handshakes were completed (half-open connections).
+HIGH,TCP port scan,192.168.1.66,192.168.1.12,2026-10-20 10:30:40,2026-10-20 10:30:43,200,"192.168.1.66 probed 200 different TCP ports on 192.168.1.12 in 3.7 s (SYN scan). Open ports revealed: 22, 80, 135, 139."
+HIGH,ARP spoofing,de:ad:be:ef:00:66,192.168.1.1,2026-10-20 10:31:00,2026-10-20 10:31:09,12,IP 192.168.1.1 was previously at 00:1a:2b:3c:4d:01 but 12 ARP replies now claim it is at de:ad:be:ef:00:66 - possible man-in-the-middle (ARP cache poisoning).
+MEDIUM,ICMP flood,192.168.1.66,192.168.1.20,2026-10-20 10:31:30,2026-10-20 10:31:31,180,"180 ICMP echo requests sent to 192.168.1.20 in 1.6 s (~112 per second), mainly from 192.168.1.66."
+MEDIUM,DNS tunnelling suspected,192.168.1.15,exfil-lab.example,2026-10-20 10:31:40,2026-10-20 10:31:48,28,"192.168.1.15 sent 28 DNS queries with long, random-looking names under 'exfil-lab.example' (28 unique, average 65 characters). Data may be hidden inside DNS lookups."
+LOW,Clear-text credentials,192.168.1.10,192.168.1.1,2026-10-20 10:30:58,2026-10-20 10:30:58,1,HTTP Basic auth from 192.168.1.10 to 192.168.1.1 sends the username and password without encryption - anyone on the path can read them. Use HTTPS/SSH/SFTP instead. (Credentials are not stored by this tool.)

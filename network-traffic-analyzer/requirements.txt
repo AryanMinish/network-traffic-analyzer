@@ -1,0 +1,6 @@
+# The core analyzer uses only the Python standard library.
+# These optional packages add charts and the web dashboard:
+matplotlib>=3.5
+flask>=2.0
+# For running the tests (they also run with the built-in unittest):
+pytest>=7.0

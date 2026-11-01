@@ -1,0 +1,14 @@
+flowchart LR
+  U["Network administrator /<br/>student analyst"]
+  N["Network interface<br/>(Ethernet / Wi-Fi / loopback)"]
+  F[("Capture files<br/>.pcap / .pcapng")]
+  P(("0<br/>Network Traffic<br/>Analyzer"))
+  U -- "capture / analyse command,<br/>thresholds, filters" --> P
+  N -- "raw frames" --> P
+  F -- "stored packets" --> P
+  P -- "saved capture" --> F
+  P -- "statistics, charts,<br/>alerts, HTML/CSV reports" --> U
+  classDef ext fill:#ffffff,stroke:#52514e,color:#0b0b0b
+  classDef proc fill:#e8f1fc,stroke:#2a78d6,stroke-width:2px,color:#0b0b0b
+  class U,N ext
+  class P proc
